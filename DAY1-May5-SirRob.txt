@@ -172,10 +172,10 @@ config t
 ip routing
 ip dhcp pool CAMERA6
 host 10.22.50.6 255.255.255.0
-client-identifier abcd.1234.cafb
+client-identifier 001a.0709.c238
 ip dhcp pool CAMERA8
 host 10.22.50.8 255.255.255.0
-client-identifier abcd.1234.cafb
+client-identifier  001a.0704.7f6a
 end
 show ip dhcp binding
 
@@ -246,18 +246,18 @@ ephone-dn 7
 ephone-dn 8
   number 2288
  ephone-dn 9
-   number 2299
+   number 2240
 ephone-dn 10
- number 2298
+ number 2230
 Ephone 1
-  Mac-address cafe.face.baba
+  Mac-address ccd8.c1fb.2325
   type 8945
-  button 1:8 2:7 3:6 4:5
+  button 1:8 2:7 3:6 4:9
   restart
 Ephone 2
-  Mac-address fafa.caca.baba
+  Mac-address ccd8.c1fb.0817
   type 8945
-  button 1:4 2:3 3:2 4:1
+  button 1:4 2:3 3:2 4:10
   restart  
 end
 
@@ -284,10 +284,10 @@ exit
 
 !OUTGOING CALL FROM CUCM TO OTHER CUCM.
 configure terminal
- dial-peer voice 11 Voip
- destination-pattern 11..
- session target ipv4:10.11.100.8
- codec g711ULAW
+dial-peer voice 11 Voip
+destination-pattern 11..
+session target ipv4:10.11.100.8
+codec g711ULAW
   dial-peer voice 12 Voip
   destination-pattern 12..
   session target ipv4:10.12.100.8
@@ -347,6 +347,14 @@ dial-peer voice 81 Voip
 dial-peer voice 82 Voip
  destination-pattern 82..
  session target ipv4:10.82.100.8
+ codec g711ULAW
+dial-peer voice 91 Voip
+ destination-pattern 91..
+ session target ipv4:10.91.100.8
+ codec g711ULAW
+dial-peer voice 92 Voip
+ destination-pattern 92..
+ session target ipv4:10.92.100.8
  codec g711ULAW
 
 TASK3***TASK3***TASK3***
@@ -411,7 +419,20 @@ router-id 10.22.100.8
 network 10.22.100.0  0.0.0.255  area 0
 end
 
+exam ready day1: NAT,NTP, DHCP, and SSH
+NAT: bigay internet sa mundo ni Cisco
+config t
+ip route 0.0.0.0.0.0.0.0 200.0.0.1
+access-list 1 permit Any
+int gigabit 0/0/1
+ip nat outside
+int gigabit 0/0/0
+ip nat inside
+ip nat inside source list 1 interface gi 0/0/1 Overload
 
+NTP:
+DHCP:
+SSH:
  !!!STATIC ROUTING FOR MININUM WAGERS: 645php/day
  !!! EDGE route NOT dikit to ClassMate:
 conf t
@@ -643,5 +664,6 @@ exit
           
 sip-ua
 sip-server ipv4:192.168.k.1
+
 
 
