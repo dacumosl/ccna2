@@ -673,5 +673,10 @@ sip-ua
 sip-server ipv4:192.168.k.1
 
 
+#corebaba
+conf t
+monitor session 1 source int fa0/3, fa0/5, fa0/7
+monitor session 1 dest int fa0/1
+end
 
 
