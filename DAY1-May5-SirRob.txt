@@ -204,7 +204,7 @@ config t
 	 end
    
 !!!CUCM ANALOG PHONES CONFIG
-configure terminal
+config t
 dial-peer voice 1 pots
    destination-pattern 2200
    port 0/0/0
@@ -678,5 +678,6 @@ conf t
 monitor session 1 source int fa0/3, fa0/5, fa0/7
 monitor session 1 dest int fa0/1
 end
+
 
 
